@@ -83,7 +83,7 @@ useClickOutside(singleSelect, () => {
         <input
           placeholder="Search"
           class="max-w-[12rem] h-full px-2 bg-slate-50 py-2 rounded-xl focus:outline-none text-sm"
-          @change.enter.prevent="handleSearch($event?.target?.value)"
+          @change.enter.prevent="handleSearch(($event.target as HTMLInputElement)?.value)"
           @keydown="handleOpenList"
           @click.stop
         />
