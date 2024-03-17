@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  :root {
+    --primary-color: #475569;
+    --text-shadow: 0.0625rem 0.0625rem 0.0625rem rgba(79, 70, 229, 0.3);
+    --text-shadow-black: 0.0625rem 0.0625rem 0.0625rem rgba(0, 0, 0, 0.3);
+  }
+
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .border-rare-white {
+    border-image: linear-gradient(to right, transparent, #fff, transparent) 1;
+  }
+
+  .border-rare-y-white {
+    border-image: linear-gradient(to top, transparent, #fff, transparent) 1;
+  }
+
+  .border-rare {
+    border-image: linear-gradient(to right, transparent, var(--secondary-color), transparent) 1;
+  }
+  .text-initial {
+    text-align: initial;
+  }
+  .break-word {
+    word-wrap: break-word;
+  }
+
+  .break-all {
+    word-break: break-all;
+  }
+  .text-shadow {
+    text-shadow: var(--text-shadow);
+  }
+
+  .text-shadow-black {
+    text-shadow: var(--text-shadow-black);
+  }
+
+  .shape-outside {
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+  }
+
+  .clip-path {
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .slide-fade-enter-active {
+    transition: all 0.3s ease-out;
+  }
+
+  .slide-fade-leave-active {
+    transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+
+  .messages {
+    .router-link-active {
+      @apply border-primary rounded-l-none rounded-r-xl border-l-2 bg-gradient-to-r from-indigo-100 to-transparent;
+    }
+  }
+}
+
+@import 'abstracts/variables';
+
+@import 'base/base';
+@import 'base/typography';
+@import 'base/utilities';

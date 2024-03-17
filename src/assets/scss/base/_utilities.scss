@@ -1,0 +1,61 @@
+.containerLarge {
+  width: min(100% - 2rem);
+  margin-inline: auto;
+
+  @media (min-width: 640px) {
+    width: min(100% - 2rem, 640px);
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    width: min(100% - 2rem, 768px);
+    margin-inline: auto;
+  }
+  @media (min-width: 1024px) {
+    width: min(100% - 2rem, 1024px);
+    margin-inline: auto;
+  }
+  @media (min-width: 1280px) {
+    width: min(100% - 2rem, 1280px);
+    margin-inline: auto;
+  }
+  @media (min-width: 1700px) {
+    width: min(100% - 2rem, 1700px);
+    margin-inline: auto;
+  }
+}
+
+.containerSmall {
+  width: min(100% - 2rem);
+  margin-inline: auto;
+
+  @media (min-width: 640px) {
+    width: min(100% - 2rem, 640px);
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    width: min(100% - 2rem, 768px);
+    margin-inline: auto;
+  }
+  @media (min-width: 1024px) {
+    width: min(100% - 2rem, 1024px);
+    margin-inline: auto;
+  }
+  @media (min-width: 1280px) {
+    width: min(100% - 2rem, 1280px);
+    margin-inline: auto;
+  }
+  @media (min-width: 1700px) {
+    width: min(100% - 2rem, 1300px);
+    margin-inline: auto;
+  }
+}
+
+.containerMinify {
+  width: min(100% - 2rem);
+  margin-inline: auto;
+
+  @media (min-width: 640px) {
+    width: min(100% - 2rem, 500px);
+    margin-inline: auto;
+  }
+}
