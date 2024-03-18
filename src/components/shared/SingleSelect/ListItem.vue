@@ -25,7 +25,7 @@ defineProps<Props>()
       cn(
         'p-4 flex justify-between cursor-pointer rounded-xl hover:bg-slate-200 transition-all duration-200 items-center',
         {
-          'text-primary font-medium bg-primary/10 hover:bg-primary/10':
+          'text-primary font-medium bg-primary/10 selected hover:bg-primary/10':
             String(option?.value) === String(selectedOption?.value)
         }
       )

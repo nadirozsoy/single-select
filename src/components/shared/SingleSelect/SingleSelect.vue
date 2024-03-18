@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useClickOutside } from '@/composables/useClickOutside'
 import { ChevronDown, Loader2 } from 'lucide-vue-next'
-import { ref, type Ref } from 'vue'
+import { ref, type Ref, nextTick } from 'vue'
 import InfiniteScroll from '../InfiniteScroll.vue'
 import ListItem from './ListItem.vue'
 
@@ -40,6 +40,14 @@ const selectOption = (option: Option) => {
 
 const handleToggleSelect = () => {
   isOpen.value = !isOpen.value
+  if (isOpen.value && selectedOption.value) {
+    nextTick(() => {
+      const selectedElement = document.querySelector('.selected')
+      if (selectedElement) {
+        selectedElement.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      }
+    })
+  }
 }
 
 const handlePageItems = () => {
@@ -75,9 +83,7 @@ useClickOutside(singleSelect, () => {
       class="w-full pl-7 pr-4 h-[5rem] text-left bg-white border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:border-primary justify-between flex items-center focus:ring focus:ring-primary/20 transition-all duration-300 cursor-pointer"
     >
       <span class="text-sm line-clamp-1">
-        {{
-          selectedOption ? selectedOption.label : defaultValue ? defaultValue?.label : placeholder
-        }}
+        {{ selectedOption ? selectedOption.label : defaultValue ? defaultValue?.label : placeholder }}
       </span>
       <div class="flex items-center gap-5">
         <input
@@ -87,10 +93,7 @@ useClickOutside(singleSelect, () => {
           @keydown="handleOpenList"
           @click.stop
         />
-        <ChevronDown
-          class="w-8 h-8 transition-all duration-300"
-          :class="isOpen ? 'transform rotate-180' : ''"
-        />
+        <ChevronDown class="w-8 h-8 transition-all duration-300" :class="isOpen ? 'transform rotate-180' : ''" />
       </div>
     </div>
     <Transition>
@@ -108,20 +111,15 @@ useClickOutside(singleSelect, () => {
               <ListItem
                 v-for="option in props.options"
                 :key="option.value"
-                :options="props.options"
                 :option="option"
                 :searchTerm="searchTerm"
-                :selectedOption="
-                  selectedOption ? selectedOption : defaultValue ? defaultValue : null
-                "
+                :selectedOption="selectedOption ? selectedOption : defaultValue ? defaultValue : null"
                 @selectOption="selectOption"
               />
             </ul>
           </template>
           <template v-else>
-            <div
-              class="flex min-h-[10rem] max-h-[20rem] flex-col items-center justify-center gap-4"
-            >
+            <div class="flex min-h-[10rem] max-h-[20rem] flex-col items-center justify-center gap-4">
               <p class="text-slate-500 text-sm">No items found</p>
               <Loader2 class="animate-spin" :size="16" />
             </div>
