@@ -80,26 +80,26 @@ useClickOutside(singleSelect, () => {
   <div ref="singleSelect" class="relative w-full">
     <div
       @click="handleToggleSelect"
-      class="w-full pl-7 pr-4 h-[5rem] text-left bg-white border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:border-primary justify-between flex items-center focus:ring focus:ring-primary/20 transition-all duration-300 cursor-pointer"
+      class="flex h-[5rem] w-full cursor-pointer items-center justify-between rounded-xl border border-gray-300 bg-white pl-7 pr-4 text-left shadow-sm transition-all duration-300 focus:border-primary focus:outline-none focus:ring focus:ring-primary/20"
     >
-      <span class="text-sm line-clamp-1">
+      <span class="line-clamp-1 text-sm">
         {{ selectedOption ? selectedOption.label : defaultValue ? defaultValue?.label : placeholder }}
       </span>
       <div class="flex items-center gap-5">
         <input
           placeholder="Search"
-          class="max-w-[12rem] h-full px-2 bg-slate-50 py-2 rounded-xl focus:outline-none text-sm"
+          class="h-full max-w-[12rem] rounded-xl bg-slate-50 px-2 py-2 text-sm focus:outline-none"
           @change.enter.prevent="handleSearch(($event.target as HTMLInputElement)?.value)"
           @keydown="handleOpenList"
           @click.stop
         />
-        <ChevronDown class="w-8 h-8 transition-all duration-300" :class="isOpen ? 'transform rotate-180' : ''" />
+        <ChevronDown class="h-8 w-8 transition-all duration-300" :class="isOpen ? 'rotate-180 transform' : ''" />
       </div>
     </div>
     <Transition>
       <div
         v-if="isOpen"
-        class="absolute z-10 mt-2 w-full bg-white border border-gray-300 min-h-[10rem] max-h-[20rem] overflow-y-auto rounded-xl shadow-lg"
+        class="absolute z-10 mt-2 max-h-[20rem] min-h-[10rem] w-full overflow-y-auto rounded-xl border border-gray-300 bg-white shadow-lg"
       >
         <InfiniteScroll
           :loader="props.pagination?.loader"
@@ -119,8 +119,8 @@ useClickOutside(singleSelect, () => {
             </ul>
           </template>
           <template v-else>
-            <div class="flex min-h-[10rem] max-h-[20rem] flex-col items-center justify-center gap-4">
-              <p class="text-slate-500 text-sm">No items found</p>
+            <div class="flex max-h-[20rem] min-h-[10rem] flex-col items-center justify-center gap-4">
+              <p class="text-sm text-slate-500">No items found</p>
               <Loader2 class="animate-spin" :size="16" />
             </div>
           </template>

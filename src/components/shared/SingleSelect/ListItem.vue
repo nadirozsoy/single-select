@@ -23,15 +23,15 @@ defineProps<Props>()
     @click="selectOption(option)"
     :class="[
       cn(
-        'p-4 flex justify-between cursor-pointer rounded-xl hover:bg-slate-200 transition-all duration-200 items-center',
+        'flex cursor-pointer items-center justify-between rounded-xl p-4 transition-all duration-200 hover:bg-slate-200',
         {
-          'text-primary font-medium bg-primary/10 selected hover:bg-primary/10':
+          'selected bg-primary/10 font-medium text-primary hover:bg-primary/10':
             String(option?.value) === String(selectedOption?.value)
         }
       )
     ]"
   >
-    <span v-html="highlightSearchTerm(option?.label, searchTerm)"> </span>
+    <span v-html="highlightSearchTerm(option?.label, searchTerm)"></span>
     <Check v-if="String(option?.value) === String(selectedOption?.value)" :size="18" />
   </li>
 </template>

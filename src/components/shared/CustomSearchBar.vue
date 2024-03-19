@@ -34,7 +34,7 @@ const handleClear = () => {
 onMounted(() => loadSearchHistory())
 </script>
 <template>
-  <div :class="cn('flex text-sm max-w-lg flex-wrap items-center gap-3', props.className)">
+  <div :class="cn('flex max-w-lg flex-wrap items-center gap-3 text-sm', props.className)">
     <div class="flex">
       <input
         v-model="search"
@@ -43,11 +43,11 @@ onMounted(() => loadSearchHistory())
         class="rounded-l-lg px-4"
       />
 
-      <button @click="handleSearch" class="bg-slate-500 p-2 rounded-r-lg text-white">Search</button>
+      <button @click="handleSearch" class="rounded-r-lg bg-slate-500 p-2 text-white">Search</button>
     </div>
     <span
       v-show="result"
-      class="hover:bg-slate-700 line-clamp-1 max-w-lg cursor-pointer whitespace-nowrap p-2 bg-slate-900 text-white rounded-lg transition-all flex items-center"
+      class="line-clamp-1 flex max-w-lg cursor-pointer items-center whitespace-nowrap rounded-lg bg-slate-900 p-2 text-white transition-all hover:bg-slate-700"
       @click="handleClear"
     >
       {{ result }}

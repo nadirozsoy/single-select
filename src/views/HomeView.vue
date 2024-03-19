@@ -11,7 +11,7 @@ const form = ref({
 </script>
 
 <template>
-  <div class="max-w-2xl mx-auto px-4 pt-12 sm:pt-20">
+  <div class="mx-auto max-w-2xl px-4 pt-12 sm:pt-20">
     <SingleSelect
       v-model:value="form.character"
       :options="characters"
