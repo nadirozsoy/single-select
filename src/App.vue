@@ -6,7 +6,7 @@ import BaseHeader from './components/BaseHeader.vue'
 <template>
   <div class="bg-slate-300 min-h-dvh">
     <BaseHeader />
-    <main class="min-h-[calc(100dvh-12rem)] max-sm:min-h-[calc(100dvh-27rem)]">
+    <main class="min-h-[calc(100dvh-12rem)] max-sm:min-h-[calc(100dvh-20rem)]">
       <RouterView />
     </main>
     <BaseFooter />
