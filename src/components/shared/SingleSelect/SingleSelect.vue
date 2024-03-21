@@ -4,35 +4,18 @@ import { ChevronDown, Loader2 } from 'lucide-vue-next'
 import { ref, type Ref, nextTick } from 'vue'
 import InfiniteScroll from '../InfiniteScroll.vue'
 import ListItem from './ListItem.vue'
-
-interface Option {
-  label: string
-  value: number
-}
-
-type ISingleSelect = {
-  options: Option[]
-  placeholder: string
-  defaultValue?: Option | null
-  pagination: {
-    page?: number
-    size?: number
-    loader?: boolean
-    hasNext?: boolean
-    search?: string | null
-  }
-}
+import type { ISingleSelect, Option } from '@/types'
 
 const props = defineProps<ISingleSelect>()
 
 const emit = defineEmits(['update:value', 'loadMoreOptions', 'search'])
 
 const isOpen = ref(false)
-const selectedOption: Ref<Option | null> = ref(null)
+const selectedOption: Ref<Option<string, string> | null> = ref(null)
 const singleSelect: Ref<HTMLDivElement | null> = ref(null)
 const searchTerm: Ref<string> = ref('')
 
-const selectOption = (option: Option) => {
+const selectOption = (option: Option<string, string>) => {
   selectedOption.value = option
   emit('update:value', option.value)
   isOpen.value = false

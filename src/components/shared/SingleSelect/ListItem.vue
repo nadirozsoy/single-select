@@ -1,17 +1,18 @@
 <script setup lang="ts">
 import { highlightSearchTerm } from '@/helpers/highlightSearchTerm'
 import { cn } from '@/lib/utils'
+import type { Option } from '@/types'
 import { Check } from 'lucide-vue-next'
 
 type Props = {
-  option: { label: string; value: number }
-  selectedOption: { label: string; value: number } | null
+  option: Option<string, string>
+  selectedOption: Option<string, string> | null
   searchTerm: string
 }
 
 const emit = defineEmits(['selectOption'])
 
-function selectOption(option: { label: string; value: number }) {
+function selectOption(option: Option<string, string>) {
   emit('selectOption', option)
 }
 

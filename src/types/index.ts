@@ -1,13 +1,12 @@
-export type ICheckedData = {
-  label: string
-  value: string
+export type Option<L = string, V = number> = {
+  label: L
+  value: V
 }
 
-export type IMultiSelect = {
-  itemIds?: string[]
-  checkedItems?: ICheckedData[]
-  items?: any[]
-  searchPlaceholder?: string
+export type ISingleSelect<L = string, V = string> = {
+  options: Option<L, V>[]
+  placeholder: string
+  defaultValue?: Option<L, V> | null
   pagination: {
     page?: number
     size?: number
