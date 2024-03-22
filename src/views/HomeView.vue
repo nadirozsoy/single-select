@@ -8,6 +8,12 @@ const { characters, pagination, handleLoadMore, handleSearch } = useCharacters()
 const form = ref({
   character: null
 })
+
+//You can add a more complicated cleaning function with @clear emit
+
+// For the update form, we can get the default value that comes when the page is loaded into select with the provide inject structure.
+
+// provide(defaultValueKey, defaultOption)
 </script>
 
 <template>
@@ -16,9 +22,10 @@ const form = ref({
       v-model:value="form.character"
       :options="characters"
       :pagination="pagination"
+      :clearable="true"
+      placeholder="Select a character"
       @loadMoreOptions="handleLoadMore"
       @search="handleSearch"
-      placeholder="Select a character"
     />
   </div>
 </template>

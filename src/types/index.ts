@@ -7,6 +7,7 @@ export type ISingleSelect<L = string, V = string> = {
   options: Option<L, V>[]
   placeholder: string
   defaultValue?: Option<L, V> | null
+  clearable?: boolean
   pagination: {
     page?: number
     size?: number
