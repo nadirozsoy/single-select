@@ -7,7 +7,10 @@ import ListItem from './ListItem.vue'
 import type { ISingleSelect, Option } from '@/types'
 import { defaultValueKey } from '@/lib/keys'
 
-const props = defineProps<ISingleSelect>()
+const props = withDefaults(defineProps<ISingleSelect>(), {
+  clearable: false,
+  placeholder: 'Select an option'
+})
 const emit = defineEmits(['update:value', 'loadMoreOptions', 'search', 'clear'])
 
 const isOpen = ref(false)
@@ -73,15 +76,17 @@ useClickOutside(singleSelect, () => {
     <div
       @click="handleToggleSelect"
       class="group flex h-[5rem] w-full cursor-pointer items-center justify-between gap-2 rounded-xl border border-gray-300 bg-white pl-7 pr-4 text-left shadow-sm transition-all duration-300 focus:border-primary focus:outline-none focus:ring focus:ring-primary/20"
+      data-test="select-toggle"
     >
       <div class="flex w-full items-center justify-between">
-        <span class="line-clamp-1 text-sm">
+        <span class="line-clamp-1 text-sm" data-test="selected-option">
           {{ selectedOption ? selectedOption.label : defaultValue ? defaultValue?.label : placeholder }}
         </span>
         <div
           v-if="clearable && (selectedOption || defaultValue)"
           class="invisible scale-0 opacity-0 transition-all duration-150 group-hover:visible group-hover:scale-100 group-hover:opacity-100"
           @click="handleClearSelect"
+          data-test="clear-button"
         >
           <X :size="20" class="rounded-full bg-slate-200 p-1" />
         </div>
@@ -101,6 +106,7 @@ useClickOutside(singleSelect, () => {
       <div
         v-if="isOpen"
         class="absolute z-10 mt-2 max-h-[20rem] min-h-[10rem] w-full overflow-y-auto rounded-xl border border-gray-300 bg-white shadow-lg"
+        data-test="option-list"
       >
         <InfiniteScroll
           :loader="props.pagination?.loader"
